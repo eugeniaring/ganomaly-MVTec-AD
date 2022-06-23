@@ -1,6 +1,8 @@
 # Pytorch-GAN-MVTec-AD
 
-The purpose of this repository is to collect Pytorch implementations of different Generative Adversarial Networks presented in research papers. These models are applied to a more complex and realistic dataset, called MVTec.
+The purpose of this repository is to collect Pytorch implementations of different Generative Adversarial Networks applied to an industrial dataset, called **MVTec**. 
+These deep learning algorithms are most of time applied to well-known and easy datasets, like MNIST and fashion-MNIST datasets, that are very far from realistic data.
+It puts me some efforts to adapt these models on smaller dataset with complex and coloured images. Contributions are welcome and if you want to be added as contritor, send me an email to eugenia.anello@gmail.com.
 
 ## MVTec dataset
 
