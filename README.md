@@ -11,5 +11,5 @@ The purpose of this repository is to collect Pytorch implementations of differen
 
 ![image](https://user-images.githubusercontent.com/61031596/175270521-a0829113-fa8b-493f-b28e-b8c0bf129d3b.png)
 
-
+For other informations read this [paper](https://openaccess.thecvf.com/content_CVPR_2019/papers/Bergmann_MVTec_AD_--_A_Comprehensive_Real-World_Dataset_for_Unsupervised_Anomaly_CVPR_2019_paper.pdf)
 
