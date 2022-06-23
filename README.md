@@ -15,6 +15,16 @@ For other informations read this [paper](https://openaccess.thecvf.com/content_C
 
 ## Table of Contents
 
+* Prerequisites
+* Usage
+* Implementations
+  * AE
+  * VAE
+  * AAE
+  * cGAN
+  * cWGAN
+  * cWGAN-GP
+
 ## Prerequisites
 
 ## Usage 
