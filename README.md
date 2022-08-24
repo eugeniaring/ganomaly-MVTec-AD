@@ -1,5 +1,6 @@
-# GANomaly
+# GANomaly in Pytorch
 
+This is an unofficial repository of [GANomaly Paper Review: Semi-Supervised Anomaly Detection via Adversarial Training](https://arxiv.org/abs/1805.06725).
 
 
 ## MVTec dataset
