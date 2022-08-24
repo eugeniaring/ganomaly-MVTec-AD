@@ -1,0 +1,19 @@
+data_path: ../data/mvtech
+save_dir: example_imgs
+obj: bottle
+img_size: 256
+validation_ratio: 0.2
+
+latent_dim: 512
+num_epochs: 50
+batch_size: 32
+b1: 0.5
+b2: 0.99
+lr: 0.0002
+
+lambda_adv: 1
+lambda_con: 40
+lambda_enc: 1
+
+early_stopping: True
+lr_scheduler: True
