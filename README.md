@@ -2,6 +2,15 @@
 
 This is an unofficial repository of [GANomaly Paper Review: Semi-Supervised Anomaly Detection via Adversarial Training](https://arxiv.org/abs/1805.06725).
 
+## Pipeline 
+
+![image](https://miro.medium.com/max/1400/1*kpZKFb8l-TIRC9SVB2ET_w.png)
+
+ There are two encoders, a decoder and a discriminative model included in this approach.
+
+* **Autoencoder**, which is also the Generator of the model, learns to reconstruct the original input by using the encoder and decoder networks.
+* **Discriminator** is trained to distinguish the inputs (true samples) from the reconstructions (false samples).
+* The second **Encoder** comprises the reconstruction into a latent code $\hat{z}$.
 
 ## MVTec dataset
 
@@ -19,9 +28,16 @@ For other informations read this [paper](https://openaccess.thecvf.com/content_C
 1. Clone repository
 
 ```
-git clone 
+git clone https://github.com/eugeniaring/GANomaly-MVTec-AD.git
 ````
 
+2. Download dataset
+
+3. Install the requirements
+
+```
+pip install requirements.txt
+````
 
 
 
