@@ -1,8 +1,6 @@
-# Pytorch-GAN-MVTec-AD
+# GANomaly
 
-The purpose of this repository is to collect Pytorch implementations of different Generative Adversarial Networks applied to an industrial dataset, called **MVTec**. 
-These deep learning algorithms are most of time applied to well-known and easy datasets, like MNIST and fashion-MNIST datasets, that are very far from realistic data.
-It puts me some efforts to adapt these models on smaller dataset with complex and coloured images. Contributions are welcome and if you want to be added as contritor, send me an email to eugenia.anello@gmail.com.
+
 
 ## MVTec dataset
 
@@ -15,37 +13,15 @@ It puts me some efforts to adapt these models on smaller dataset with complex an
 
 For other informations read this [paper](https://openaccess.thecvf.com/content_CVPR_2019/papers/Bergmann_MVTec_AD_--_A_Comprehensive_Real-World_Dataset_for_Unsupervised_Anomaly_CVPR_2019_paper.pdf)
 
-## Table of Contents
+## Installation
 
-* Prerequisites
-* Usage
-* Implementations
-  * AE
-  * VAE
-  * AAE
-  * cGAN
-  * cWGAN
-  * cWGAN-GP
+1. Clone repository
 
-## Prerequisites
+```
+git clone 
+````
 
-## Usage 
 
-To train:
 
-To test:
 
-## Implementations
-
-### AE
-
-### VAE
-
-### AAE
-
-### GAN 
-
-### WGAN
-
-### WGAN-GP
 
