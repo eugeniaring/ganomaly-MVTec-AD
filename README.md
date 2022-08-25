@@ -38,7 +38,7 @@ git clone https://github.com/eugeniaring/GANomaly-MVTec-AD.git
 4. Install the requirements
 
 ```
-pip install requirements.txt
+pip install -r requirements.txt
 ````
 
 
