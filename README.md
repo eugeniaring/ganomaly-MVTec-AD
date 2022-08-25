@@ -67,7 +67,7 @@ Below there are the image-level ROC-AUC scores:
 | transistor | -   |    |
 | wood | -   |    |
 | zipper | -   |    |
-| Average | -   |    |
+| **Average** | -   |    |
 
 
 
