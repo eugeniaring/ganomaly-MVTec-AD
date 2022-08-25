@@ -23,10 +23,10 @@ class MVTecDataset(Dataset):
         self.class_name = class_name
         self.is_train = is_train
         self.resize = resize
-        # self.mvtec_folder_path = os.path.join(root_path, 'mvtec_anomaly_detection')
+        #self.mvtec_folder_path = dataset_path
 
         # download dataset if not exist
-        # self.download()
+        #self.download()
 
         # load dataset
         self.x, self.y, self.mask = self.load_dataset_folder()
