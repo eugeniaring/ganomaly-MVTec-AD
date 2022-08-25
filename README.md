@@ -63,6 +63,11 @@ Below there are the image-level ROC-AUC scores:
 | pill | -   |    |
 | screw | -   |    |
 | tile | -   |    |
+| toothbrush | -   |    |
+| transistor | -   |    |
+| wood | -   |    |
+| zipper | -   |    |
+| Average | -   |    |
 
 
 
