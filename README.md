@@ -32,7 +32,10 @@ git clone https://github.com/eugeniaring/GANomaly-MVTec-AD.git
 ````
 
 2. Download dataset
-
+```
+wget https://www.mydrive.ch/shares/38536/3830184030e49fe74747669442f0f282/download/420938113-1629952094/mvtec_anomaly_detection.tar.xz
+tar -xf mvtec_anomaly_detection.tar.xz
+```
 3. Create a virtual environment in Python
 
 4. Install the requirements
