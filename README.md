@@ -52,7 +52,7 @@ Below there are the image-level ROC-AUC scores:
 
 | Attempt | Paper    | Implementation    |
 | :---:   | :---: | :---: |
-| bottle | -   |    |
+| bottle | -   | 0.813   |
 | cable | -   |    |
 | capsule | -   |    |
 | carpet | -   |    |
