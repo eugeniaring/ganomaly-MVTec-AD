@@ -33,7 +33,9 @@ git clone https://github.com/eugeniaring/GANomaly-MVTec-AD.git
 
 2. Download dataset
 
-3. Install the requirements
+3. Create a virtual environment in Python
+
+4. Install the requirements
 
 ```
 pip install requirements.txt
