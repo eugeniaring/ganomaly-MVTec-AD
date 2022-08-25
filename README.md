@@ -50,7 +50,7 @@ python train.py
 
 Below there are the image-level ROC-AUC scores:
 
-| Attempt | Paper    | Implementation    |
+|  | Paper    | Implementation    |
 | :---:   | :---: | :---: |
 | bottle | -   | 0.813   |
 | cable | -   |    |
