@@ -1,8 +1,5 @@
-from operator import truediv
 import os
-# import tarfile
 from PIL import Image
-# import urllib.request
 
 import torch
 from torch.utils.data import Dataset

@@ -1,12 +1,7 @@
-import os
 import torch.nn as nn
 import torch
 import numpy as np
 from tqdm import tqdm
-
-from visualize_fig import plot_fig
-from sklearn.metrics import roc_auc_score,roc_curve,precision_recall_curve
-import matplotlib.pyplot as plt
 
 
 def create_ganomaly(img_shape, parameters):
@@ -318,44 +313,29 @@ class Trainer_ganomaly():
     def val_epoch(self,dataloader,save_mask=False):
 
         con_losses,enc_losses = [],[]
-        enc_losses_imgs = []
-        #enc_losses_imgs = torch.zeros(size=(len(dataloader.dataset),), dtype=torch.float32, device=self.device)
         self.gt_mask_list = []
         self.gt_list = []
         self.gen.eval()
         self.disc.eval()
-        i = 0
         for batch in tqdm(dataloader):
-            x = batch[0].to(self.device)
-            N = x.size(-1)
-            batchsize = batch[0].shape[0]  
+            x = batch[0].to(self.device) 
             if save_mask:
                 y, mask = batch[1], batch[2]   
                 self.gt_mask_list.extend(mask.cpu().numpy())
                 self.gt_list.extend(y.cpu().numpy())
             with torch.no_grad():
                 outputs, latent_in, latent_out,_ = self.gen(x)
-                #error = torch.mean(torch.pow((latent_in-latent_out), 2), dim=0)
-                error = torch.pow((latent_in-latent_out), 2)/N
-                error_img = torch.mean(torch.pow((latent_in-latent_out), 2), dim=1)
+                error = torch.mean(torch.pow((latent_in-latent_out), 2), dim=1)
             con_losses.append(self.l_con(outputs, x).item())
-            #enc_losses.append(self.l_enc(latent_in, latent_out).item())
-            enc_losses.extend(error_img.cpu().numpy())
-            enc_losses_imgs.extend(error.cpu().numpy())
-            #print(enc_losses_imgs)
-            #enc_losses_imgs[i*batchsize : i*batchsize+error.size(0)] = error.reshape(error.size(0))
-            i+=1
+            enc_losses.extend(error.cpu().numpy())
 
         con_losses = np.asarray(con_losses)
         con_loss_avg = con_losses.mean()
         enc_losses = np.array(enc_losses)
-        enc_losses_imgs = np.array(enc_losses_imgs)
-        #print('enc_losses_imgs shape:',enc_losses_imgs.shape)
-        #print(enc_losses_imgs)
+
         enc_losses = (enc_losses - np.min(enc_losses)) / (np.max(enc_losses) - np.min(enc_losses))
-        enc_losses_imgs = (enc_losses_imgs - np.min(enc_losses_imgs)) / (np.max(enc_losses_imgs) - np.min(enc_losses_imgs))
         enc_loss_avg = enc_losses.mean()
-        metrics_epoch = {"contextual_loss_avg":con_loss_avg,"enc_loss_avg":enc_loss_avg,"contextual_losses":con_losses,"enc_losses":enc_losses,"enc_losses_imgs":enc_losses_imgs}
+        metrics_epoch = {"contextual_loss_avg":con_loss_avg,"enc_loss_avg":enc_loss_avg,"contextual_losses":con_losses,"enc_losses":enc_losses}
         return metrics_epoch, x, outputs
 
     def evaluate_data(self,dataloader):
@@ -364,43 +344,4 @@ class Trainer_ganomaly():
 
 
 
-def eval_anomalies(scores,pix_scores,gt_list,gt_mask_list,test_imgs,recon_imgs,params):
-        #img_scores = scores.reshape(scores.shape[0], -1).max(axis=1)
-        #img_scores = scores
-        gt_list = np.asarray(gt_list)
-        img_scores = scores.reshape(gt_list.shape)
-        #img_scores = scores.reshape(scores.shape[0], -1)
-        #.max(axis=1)
-        print('img_scores shape: ',img_scores.shape)
-        print('gt_list shape: ',gt_list.shape)
-
-        # calculate image ROCAUC
-        fpr, tpr, _ = roc_curve(gt_list, img_scores)
-        img_roc_auc = roc_auc_score(gt_list, img_scores)
-        print('image ROCAUC: %.3f' % (img_roc_auc))
-        plt.plot(fpr, tpr, label='%s img_ROCAUC: %.3f' % (params['obj'], img_roc_auc))
-        plt.legend(loc="lower right")
-
-        # calculate per-pixel level ROCAUC
-        # scores = pix_scores
-        # gt_mask = np.asarray(gt_mask_list)
-        # print("gt_mask before flatten: ",gt_mask.shape)
-        # print('gt_mask shape: ',gt_mask.flatten().shape)
-        # print('scores shape: ',scores.flatten().shape)
-        # precision, recall, thresholds = precision_recall_curve(gt_mask.flatten(), scores.flatten())
-        # a = 2 * precision * recall
-        # b = precision + recall
-        # f1 = np.divide(a, b, out=np.zeros_like(a), where=b != 0)
-        # threshold = thresholds[np.argmax(f1)]
-
-        # fpr, tpr, _ = roc_curve(gt_mask.flatten(), scores.flatten())
-        # per_pixel_rocauc = roc_auc_score(gt_mask.flatten(), scores.flatten())
-        # print('pixel ROCAUC: %.3f' % (per_pixel_rocauc))
-
-        # plt.plot(fpr, tpr, label='%s pixel_ROCAUC: %.3f' % (params['obj'], per_pixel_rocauc))
-        # plt.legend(loc="lower right")
-        # save_dir = params['save_dir'] + '/' + f"eval_testimages" + '/' + 'pictures_{:.4f}'.format(threshold)
-        # os.makedirs(save_dir, exist_ok=True)
-        # plt.savefig(os.path.join(save_dir, params['obj'] + '_roc_curve.png'), dpi=100)
-
-        # plot_fig(params, test_imgs, recon_imgs, scores, params['gt_mask_list'], threshold, save_dir)       
+     
