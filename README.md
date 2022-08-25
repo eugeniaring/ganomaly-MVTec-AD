@@ -54,7 +54,7 @@ sh run.sh
 
 ## Results 
 
-Below there are the image-level ROC-AUC scores:
+Below there are the Image-level ROC-AUC scores:
 
 |  | Paper    | Implementation    |
 | :---:   | :---: | :---: |
@@ -75,7 +75,7 @@ Below there are the image-level ROC-AUC scores:
 | zipper | -   |    |
 | **Average** | -   |    |
 
-## Reconstruction Results
+
 
 
 
