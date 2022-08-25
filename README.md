@@ -75,5 +75,7 @@ Below there are the image-level ROC-AUC scores:
 | zipper | -   |    |
 | **Average** | -   |    |
 
+## Reconstruction Results
+
 
 
