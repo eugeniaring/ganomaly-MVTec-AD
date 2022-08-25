@@ -46,5 +46,23 @@ pip install -r requirements.txt
 python train.py
 ````
 
+## Results 
+
+Below there are the image-level ROC-AUC scores:
+
+| Attempt | Paper    | Implementation    |
+| :---:   | :---: | :---: |
+| bottle | -   |    |
+| cable | -   |    |
+| capsule | -   |    |
+| carpet | -   |    |
+| grid | -   |    |
+| hazelnut | -   |    |
+| leather | -   |    |
+| metal_nut | -   |    |
+| pill | -   |    |
+| screw | -   |    |
+| tile | -   |    |
+
 
 
