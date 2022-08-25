@@ -40,10 +40,16 @@ git clone https://github.com/eugeniaring/GANomaly-MVTec-AD.git
 ```
 pip install -r requirements.txt
 ````
-5. Train and evaluate GANomaly on MVTec AD
+5. Run experiment
 
 ```
-python train.py
+python train.py --obj bottle
+````
+
+or
+
+```
+sh run.sh
 ````
 
 ## Results 
