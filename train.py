@@ -1,31 +1,23 @@
 import os
 import yaml
-import pandas as pd
-from dataset import import_data
-from ganomaly import create_ganomaly, Trainer_ganomaly, eval_anomalies
-from tqdm import tqdm
-import torch
-from utils import EarlyStop, denorm
 from torch.optim.lr_scheduler import ReduceLROnPlateau
-from torchvision.utils import save_image
+import argparse
 
-def save_snapshot(x, x2, model, save_dir, save_dir2):
-    model.eval()
-    with torch.no_grad():
-        x_fake_list = x
-        recon, _, _,_ = model(x)
-        x_concat = torch.cat((x_fake_list, recon), dim=3)
-        save_image(denorm(x_concat.data.cpu()), save_dir, nrow=1, padding=0)
-
-        x_fake_list = x2
-        recon, _, _,_ = model(x2)
-        x_concat = torch.cat((x_fake_list, recon), dim=3)
-        save_image(denorm(x_concat.data.cpu()), save_dir2, nrow=1, padding=0)
+from src.utils import EarlyStop
+from src.ganomaly import create_ganomaly, Trainer_ganomaly
+from src.visualize_fig import eval_anomalies
+from src.dataset import import_data
+from src.visualize_fig import save_snapshot,eval_anomalies
 
 def main():
-    import yaml
+
+    parser = argparse.ArgumentParser()
+    parser.add_argument("--obj", default="bottle", type=str, help='object name')
+    opt = parser.parse_args()
     f = open('params.yaml','rb')
     params = yaml.load(f, Loader=yaml.FullLoader)
+    params['obj']=opt.obj
+
     f.close()
     train_dataset, train_loader, val_loader = import_data(params,is_train=True)
     _, test_loader = import_data(params,is_train=False)
@@ -39,10 +31,7 @@ def main():
     if early_stopping:
         early_stopping = EarlyStop(patience=5)
 
-    x_normal_fixed, _, _ = iter(val_loader).next()
-    x_normal_fixed = x_normal_fixed.to(device)
-
-    x_test_fixed, _, _ = iter(test_loader).next()
+    x_test_fixed, _, mask_test_fixed = iter(test_loader).next()
     x_test_fixed = x_test_fixed.to(device)
 
     for epoch in range(n_epochs):
@@ -57,15 +46,19 @@ def main():
         print("\nEpoch: {}: train adv_loss: {:.3f} train con_loss: {:.3f} train enc_loss: {:.3f}  train tot loss: {:.3f}".format(epoch,train_met['adv_loss_avg'],train_met['contextual_loss_avg'],train_met['enc_loss_avg'],train_met['tot_loss_avg']))
         print("\nval con_loss: {:.3f} val enc_loss: {:.3f}".format(val_met['contextual_loss_avg'],val_met['enc_loss_avg']))
 
-    save_sample = os.path.join(params['save_dir'], '{}-val-images.jpg'.format(epoch))
-    save_sample2 = os.path.join(params['save_dir'], '{}test-images.jpg'.format(epoch))
+    save_sample = os.path.join(params['save_dir'], '{}.jpg'.format(params['obj']))
     if  os.path.exists(params['save_dir'])==False:
        os.makedirs(params['save_dir'])
-    save_snapshot(x_normal_fixed, x_test_fixed, gen, save_sample, save_sample2) 
 
-    test_metrics_epoch,test_imgs,recon_imgs = trainer.evaluate_data(test_loader)
+    save_roc_auc = os.path.join(params['save_dir_rocauc'], '{}.jpg'.format(params['obj']))
+    if  os.path.exists(params['save_dir_rocauc'])==False:
+       os.makedirs(params['save_dir_rocauc'])
 
-    eval_anomalies(test_metrics_epoch['enc_losses'],test_metrics_epoch['enc_losses_imgs'],trainer.gt_list,trainer.gt_mask_list,test_imgs,recon_imgs,params)
+    save_snapshot(x_test_fixed,mask_test_fixed, gen, save_sample) 
+
+    test_metrics_epoch,_,_ = trainer.evaluate_data(test_loader)
+
+    eval_anomalies(test_metrics_epoch['enc_losses'],trainer.gt_list,params,save_roc_auc)
 
 
 if __name__ == '__main__':
