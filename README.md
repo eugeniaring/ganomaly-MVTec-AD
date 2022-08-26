@@ -1,6 +1,6 @@
 # GANomaly in Pytorch
 
-This is an unofficial repository of [GANomaly Paper Review: Semi-Supervised Anomaly Detection via Adversarial Training](https://arxiv.org/abs/1805.06725). To have a fast overview, there is also a review I wrote about the paper [here](https://medium.com/p/a6f7a64a265f).
+This is an unofficial repository of [GANomaly: Semi-Supervised Anomaly Detection via Adversarial Training](https://arxiv.org/abs/1805.06725). To have a fast overview, there is also a review I wrote about the paper [here](https://medium.com/p/a6f7a64a265f).
 
 ## Pipeline 
 
@@ -57,7 +57,8 @@ sh run.sh
 
 ## References
 
-[GANomaly Paper Review: Semi-Supervised Anomaly Detection via Adversarial Training](https://arxiv.org/abs/1805.06725)
+[GANomaly: Semi-Supervised Anomaly Detection via Adversarial Training](https://arxiv.org/abs/1805.06725)
+[GANomaly Paper Review](https://towardsdatascience.com/ganomaly-paper-review-semi-supervised-anomaly-detection-via-adversarial-training-a6f7a64a265f)
 
 
 
