@@ -38,11 +38,11 @@ def main():
         train_met = trainer.train_epoch(train_loader)
         val_met, _, _ = trainer.val_epoch(val_loader)
         if early_stopping:
-            early_stopping(val_met['contextual_loss_avg'],trainer.gen,trainer.gen_optimizer)
+            early_stopping(val_met['loss'],trainer.gen,trainer.gen_optimizer)
             if early_stopping.early_stop:
                 break
         if lr_scheduler:
-            scheduler.step(val_met['contextual_loss_avg'])
+            scheduler.step(val_met['loss'])
         print("\nEpoch: {}: train adv_loss: {:.3f} train con_loss: {:.3f} train enc_loss: {:.3f}  train tot loss: {:.3f}".format(epoch,train_met['adv_loss_avg'],train_met['contextual_loss_avg'],train_met['enc_loss_avg'],train_met['tot_loss_avg']))
         print("\nval con_loss: {:.3f} val enc_loss: {:.3f}".format(val_met['contextual_loss_avg'],val_met['enc_loss_avg']))
 
