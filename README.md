@@ -55,28 +55,6 @@ or
 sh run.sh
 ````
 
-## Results 
-
-Below there are the Image-level ROC-AUC scores:
-
-|  | Paper    | Implementation    |
-| :---:   | :---: | :---: |
-| bottle | -   | 0.813   |
-| cable | -   | 0.629   |
-| capsule | -   |    |
-| carpet | -   |    |
-| grid | -   |    |
-| hazelnut | -   |    |
-| leather | -   |    |
-| metal_nut | -   |    |
-| pill | -   |    |
-| screw | -   |    |
-| tile | -   |    |
-| toothbrush | -   |    |
-| transistor | -   |    |
-| wood | -   |    |
-| zipper | -   |    |
-| **Average** | -   |    |
 
 
 
