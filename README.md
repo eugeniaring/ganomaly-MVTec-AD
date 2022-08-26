@@ -38,6 +38,21 @@ tar -xf mvtec_anomaly_detection.tar.xz
 ```
 3. Create a virtual environment in Python
 
+Windows commands
+
+```
+py -m venv vanv
+echo venv >> .gitignore
+venv/Scripts/activate 
+````
+
+Linux/Ubuntu commands
+```
+python3 -m venv venv
+source venv/bin/activate
+```
+
+
 4. Install the requirements
 
 ```
