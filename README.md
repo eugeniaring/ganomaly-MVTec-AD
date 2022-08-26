@@ -69,7 +69,7 @@ Below there are the Image-level ROC-AUC scores:
 | hazelnut | -   | 0.531   |
 | leather | -   | 0.357   |
 | metal_nut | -   | 0.596   |
-| pill | -   | 0.375   |
+| pill | -   | **0.741**   |
 | screw | -   | 0.107   |
 | tile | -   | 0.467   |
 | toothbrush | -   | 0.497   |
