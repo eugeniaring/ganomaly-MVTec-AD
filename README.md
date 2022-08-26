@@ -55,7 +55,9 @@ or
 sh run.sh
 ````
 
+## References
 
+[GANomaly Paper Review: Semi-Supervised Anomaly Detection via Adversarial Training](https://arxiv.org/abs/1805.06725)
 
 
 
