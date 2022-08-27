@@ -41,7 +41,7 @@ tar -xf mvtec_anomaly_detection.tar.xz
 Windows commands
 
 ```
-py -m venv vanv
+py -m venv venv
 echo venv >> .gitignore
 venv/Scripts/activate 
 ````
